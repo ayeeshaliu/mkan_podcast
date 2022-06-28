@@ -35,7 +35,7 @@ class PodcastListScreen extends StatelessWidget {
                         icon: Icon(Icons.arrow_back),),
 
         IconButton(
-          iconSize: 30,
+          iconSize: 25,
             color: Colors.black,
             onPressed: (){},
             icon: Icon(Icons.all_inclusive),),
