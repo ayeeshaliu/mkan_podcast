@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mkan_podcast/podcastTabSreen.dart';
-import 'package:mkan_podcast/tabs_Screen.dart';
-import 'package:mkan_podcast/Podcast_item.dart';
+import 'package:mkan_podcast/screens/podcastTabSreen.dart';
+import 'package:mkan_podcast/screens/tabs_Screen.dart';
+import 'package:mkan_podcast/widgets/Podcast_item.dart';
 
 void main() => runApp(const MkanPodcast());
 

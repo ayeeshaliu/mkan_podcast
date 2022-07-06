@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mkan_podcast/podcastTabSreen.dart';
-import 'package:mkan_podcast/VideosTab.dart';
-import 'package:mkan_podcast/SavedTab.dart';
-import 'package:mkan_podcast/SettingsTab.dart';
+import 'package:mkan_podcast/screens/podcastTabSreen.dart';
+import 'package:mkan_podcast/tabs/VideosTab.dart';
+import 'package:mkan_podcast/tabs/SavedTab.dart';
+import 'package:mkan_podcast/tabs/SettingsTab.dart';
 
 class TabsScreen extends StatefulWidget {
   @override

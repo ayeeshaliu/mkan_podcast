@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mkan_podcast/podcast_list_screen.dart';
+import 'package:mkan_podcast/screens/podcast_list_screen.dart';
 
 class PodcastItem extends StatelessWidget {
   final Icon icon;

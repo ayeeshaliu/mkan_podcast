@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mkan_podcast/Listening.dart';
-import 'package:mkan_podcast/Recommendation.dart';
+import 'package:mkan_podcast/Classholder/Listening.dart';
+import 'package:mkan_podcast/Classholder/Recommendation.dart';
 import 'package:flutter/cupertino.dart';
 
 const LISTENING_LIST = [

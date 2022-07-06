@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mkan_podcast/Mkan_data.dart';
-import 'package:mkan_podcast/recommendation_item.dart';
+import 'package:mkan_podcast/data/Mkan_data.dart';
+import 'package:mkan_podcast/widgets/recommendation_item.dart';
 
 
 class PodcastListScreen extends StatelessWidget {
