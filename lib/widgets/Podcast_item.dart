@@ -25,46 +25,50 @@ class PodcastItem extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Material(
-          child: InkWell(
-            onTap: () => podcastSelector(context),
-            splashColor: colors,
-            borderRadius: BorderRadius.circular(15),
-            child: Container(
-              width: 294.08,
-              height: 178.29,
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                children: [
-                  Text(title),
-                  SizedBox(height: 10,),
-                  Text(author),
-                  SizedBox(height: 35,),
-                  Row(
-                    children: [
-                      Icon(Icons.play_circle_outline_rounded, color: colors,),
-                      Text(duration),
-                    ],
+    return Container(
+      // height: MediaQuery.of(context).size.height  *0.3,
+      // width: MediaQuery.of(context).size.width * 0.8,
+      child: Row(
+        children: [
+          Material(
+            child: InkWell(
+              onTap: () => podcastSelector(context),
+              splashColor: colors,
+              borderRadius: BorderRadius.circular(15),
+              child: Container(
+                 // width: MediaQuery.of(context).size.width *0.8,
+                 //  height: MediaQuery.of(context).size.height *0.2,
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    Text(title),
+                    SizedBox(height: 10,),
+                    Text(author),
+                    SizedBox(height: 35,),
+                    Row(
+                      children: [
+                        Icon(Icons.play_circle_outline_rounded, color: colors,),
+                        Text(duration),
+                      ],
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors:[ color.withOpacity(0.7),
+                      color,
+                    ]
                   ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors:[ color.withOpacity(0.7),
-                    color,
-                  ]
-                ),
-                color: color,
-                borderRadius: BorderRadius.circular(20),
+                  color: color,
+                  borderRadius: BorderRadius.circular(20),
 
+                  ),
                 ),
-              ),
+            ),
           ),
-        ),
-        SizedBox(width: 16,),
-      ],
+          SizedBox(width: 16,),
+        ],
+      ),
     );
   }
 }

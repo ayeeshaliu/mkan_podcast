@@ -22,20 +22,26 @@ class _TabsScreenState extends State<TabsScreen> {
     return CupertinoPageScaffold(
       backgroundColor: Color(0xFFFAFFFC),
 
-      child: CupertinoTabScaffold(
-        tabBar: CupertinoTabBar(
-          activeColor: Color.fromRGBO(3, 173, 95, 1),
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.podcasts,size: 25,), label: "Podcast"),
-            BottomNavigationBarItem(icon: Icon(Icons.videocam_sharp, size: 25, ), label: "Videos"),
-            BottomNavigationBarItem(icon: Icon(Icons.favorite, size: 25, ), label: "Saved"),
-            BottomNavigationBarItem(icon: Icon(Icons.settings, size: 25, ), label: "Settings"),
-          ],
-          
+      child: SafeArea(
+        child: Container(
+           height: MediaQuery.of(context).size.height,
+           width: MediaQuery.of(context).size.width,
+          child: CupertinoTabScaffold(
+            tabBar: CupertinoTabBar(
+              activeColor: Color.fromRGBO(3, 173, 95, 1),
+              items: [
+                BottomNavigationBarItem(icon: Icon(Icons.podcasts,size: 25,), label: "Podcast"),
+                BottomNavigationBarItem(icon: Icon(Icons.videocam_sharp, size: 25, ), label: "Videos"),
+                BottomNavigationBarItem(icon: Icon(Icons.favorite, size: 25, ), label: "Saved"),
+                BottomNavigationBarItem(icon: Icon(Icons.settings, size: 25, ), label: "Settings"),
+              ],
+
+            ),
+            tabBuilder: (BuildContext context, index) {
+              return _tabs[index];
+            },
+          ),
         ),
-        tabBuilder: (BuildContext context, index) {
-          return _tabs[index];
-        },
       ),
       
 
