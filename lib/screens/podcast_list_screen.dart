@@ -116,7 +116,7 @@ class PodcastListScreen extends StatelessWidget {
 
               Text("Episodes",
                 style: TextStyle(
-                  fontSize: 21,
+                  fontSize: 20,
                   fontWeight: FontWeight.w700,
                 ),
 
