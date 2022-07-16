@@ -9,17 +9,21 @@ class RecommendationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Recommended",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w700,
-            //fontFamily: "ProductSans",
-          ),
+        Row(
+          children: [
+            // SizedBox(height: MediaQuery.of(context).size.height,),
+            Text("Recommended",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                //fontFamily: "ProductSans",
+              ),
+            ),
+          ],
         ),
+        SizedBox(height: 10,),
         Expanded(
           child: Container(
-            // height: MediaQuery.of(context).size.height  ,
-            // width: MediaQuery.of(context).size.width ,
             child: ListView(
               scrollDirection: Axis.vertical,
               children: RECOMMENDATION_LIST.map((mend)

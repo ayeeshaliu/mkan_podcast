@@ -20,12 +20,15 @@ class _PodcastTabState extends State<PodcastTab> {
     return Column(
       children: [
         SizedBox(height: 10,),
-        Expanded(child: Column(
+        Column(
           children: [
             PodcastScreen(),
+            SizedBox(height: 10,),
           ],
-        )),
+        ),
         Expanded(child: RecommendationScreen()),
+
+
       ],
     );
   }
