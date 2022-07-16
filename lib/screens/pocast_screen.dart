@@ -17,7 +17,7 @@ class PodcastScreen extends StatelessWidget {
           padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top +10),
           child: Text("Podcast",
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 25,
             fontWeight: FontWeight.w700,
             //fontFamily: "ProductSans",
           ),),
