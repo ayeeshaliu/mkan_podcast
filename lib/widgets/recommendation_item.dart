@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RecommendationItem extends StatelessWidget {
   final Icon icon;
@@ -32,11 +33,23 @@ class RecommendationItem extends StatelessWidget {
               width: 90,
               height: 90,
               padding: const EdgeInsets.all(15),
-              child: Column(
+              child: Stack(
                 children: [
-                  Icon(Icons.play_circle_outline_rounded, color: colors, size: 32,),
-                  SizedBox(height: 10,),
-                  Text(duration),
+                  Container(
+                    child: Column(
+                      children: [
+                        Container(
+                            child: SvgPicture.asset("assets/vectors/circles.svg",color: colors,fit: BoxFit.contain,
+                            ),
+                          height: 2,
+                          width: 2,
+                        ),
+                        Icon(Icons.play_circle_outline_rounded, color: colors, size: 32,),
+                        SizedBox(height: 10,),
+                        Text(duration),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               decoration: BoxDecoration(
