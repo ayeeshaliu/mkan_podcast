@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkan_podcast/data/Mkan_data.dart';
+import 'package:mkan_podcast/screens/podcast_play_screen.dart';
 import 'package:mkan_podcast/widgets/recommendation_item.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -16,6 +17,12 @@ class PodcastListScreen extends StatelessWidget {
       this.title,
       this.author,
       );
+
+  void playSelector (BuildContext ctx) {
+    Navigator.of(ctx).push(CupertinoPageRoute(builder: (_){
+      return PodcastPlay(color, title, author);
+    }));
+  }
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -159,14 +166,18 @@ class PodcastListScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.65,
                     child: ListView(
                       scrollDirection: Axis.vertical,
-                      children: RECOMMENDATION_LIST.map((epsd) => RecommendationItem(
-                          epsd.icon,
-                          epsd.duration,
-                          epsd.title,
-                          epsd.author,
-                          epsd.color,
-                          epsd.colors
-                      )).toList(),
+                      children: RECOMMENDATION_LIST.map((epsd) => InkWell(
+                        child: RecommendationItem(
+                            epsd.icon,
+                            epsd.duration,
+                            epsd.title,
+                            epsd.author,
+                            epsd.color,
+                            epsd.colors
+                        ),
+                        onTap: ()=> playSelector(context),
+                      ),
+                      ).toList(),
 
                     ),
                   ),
