@@ -30,7 +30,7 @@ class RecommendationItem extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 80,
+              width: 90,
               height: 90,
               padding: const EdgeInsets.all(15),
               child: Container(
