@@ -6,7 +6,10 @@ class SettingsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
         child: Center(
-          child: Text("Hello Settings Tab!"),
+          child: Text("COMING SOON!",
+            style: TextStyle(
+              fontSize: 40,
+            ),),
         ),
     );
   }

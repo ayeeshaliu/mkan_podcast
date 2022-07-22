@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mkan_podcast/data/Mkan_data.dart';
 import 'package:mkan_podcast/widgets/recommendation_item.dart';
 import 'package:line_icons/line_icons.dart';
@@ -52,14 +53,26 @@ class PodcastListScreen extends StatelessWidget {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 25),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color.fromRGBO(3, 180, 97, 1),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            height: 110,
-                            width: 110,
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(3, 180, 97, 1),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                height: 110,
+                                width: 110,
+                                child: Container(
+                                  child: Stack(
+                                    children: [
+                                      SvgPicture.asset("assets/vectors/circles.svg",color: color),
+                                      SvgPicture.asset("assets/vectors/mic.svg",color: color),
+                                    ],
+                                  ),
+                                ),
 
+                              ),
+                            ],
                           ),
                         ),
 

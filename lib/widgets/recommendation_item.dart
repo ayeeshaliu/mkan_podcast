@@ -33,24 +33,16 @@ class RecommendationItem extends StatelessWidget {
               width: 90,
               height: 90,
               padding: const EdgeInsets.all(15),
-              child: Stack(
-                children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Container(
-                            child: SvgPicture.asset("assets/vectors/circles.svg",color: colors,fit: BoxFit.contain,
-                            ),
-                          height: 2,
-                          width: 2,
-                        ),
-                        Icon(Icons.play_circle_outline_rounded, color: colors, size: 32,),
-                        SizedBox(height: 10,),
-                        Text(duration),
-                      ],
+              child: Container(
+                child: Stack(
+                  children: [
+                    SvgPicture.asset("assets/vectors/circles.svg",color: colors, fit: BoxFit.contain,
                     ),
-                  ),
-                ],
+                    Icon(Icons.play_circle_outline_rounded, color: colors, size: 32,),
+                    SizedBox(height: 10,),
+                    Text(duration),
+                  ],
+                ),
               ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(

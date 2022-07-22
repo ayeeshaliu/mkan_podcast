@@ -6,7 +6,10 @@ class VideosTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
         child: Center(
-          child: Text("Hello Videos tab!"),
+          child: Text("COMING SOON!",
+            style: TextStyle(
+              fontSize: 40,
+            ),),
         ),
     );
   }
