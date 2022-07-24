@@ -68,6 +68,9 @@ flutter:
 #        - family:
     - assets/vectors/circles.svg
     - assets/vectors/mic.svg
+    - assets/vectors/slider.svg
+    - assets/vectors/shuffle.svg
+    - assets/vectors/speaker.svg
 
   # To add assets to your application, add an assets section, like this:
   #assets:

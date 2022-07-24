@@ -48,7 +48,7 @@ class PodcastPlay extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
               Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 25),
+              padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 10),
           child: Column(
             children: [
               Row(
@@ -57,7 +57,7 @@ class PodcastPlay extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(3, 180, 97, 1),
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(16.2),
                     ),
                     height: 230,
                     width: 230,
@@ -99,20 +99,112 @@ class PodcastPlay extends StatelessWidget {
         ],
       ),
       SizedBox(
-        height: 20,
+        height: 10,
       ),
 
-      Text(title, style: TextStyle(
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-      ),),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Container(
+              child: Center(
+                child: Text(title, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+            ),
+          ),
+        ],
+      ),
 
       SizedBox(
         height: 10,
       ),
-      Text(author, style: TextStyle(
-        fontSize: 18,
-      ),),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(author, style: TextStyle(
+            fontSize: 18,
+          ),),
+        ],
+      ),
+      SizedBox(
+        height: 20,
+      ),
+
+      Container(
+        child: InkWell(child: SvgPicture.asset("assets/vectors/slider.svg"),
+          onTap: (){},
+        ),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+
+      Padding(
+        padding:  EdgeInsets.only(left: MediaQuery.of(context).viewInsets.left  + 20, right: MediaQuery.of(context).viewInsets.right + 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset("assets/vectors/shuffle.svg"),
+            SvgPicture.asset("assets/vectors/speaker.svg"),
+          ],
+        ),
+      ),
+
+      SizedBox(
+        height: 20,
+      ),
+
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).viewInsets.horizontal + 25),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(Icons.fast_rewind, size: 40, color: Colors.black,),
+            Icon(Icons.pause, size: 60, color: Colors.black,),
+            Icon(Icons.fast_forward, size: 40, color: Colors.black,),
+          ],
+        ),
+      ),
+
+      SizedBox(
+        height: 15,
+      ),
+
+      Container(
+        height: 94,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Color.fromRGBO(3, 180, 97, 0.08),
+        ),
+        child: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).viewInsets.horizontal + 60, vertical: MediaQuery.of(context).viewInsets.vertical + 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  Icon(LineIcons.download, size: 30, color: Colors.black,),
+                  Text("Download"),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(LineIcons.share, size: 30, color: Colors.black,),
+                  Text("Share"),
+                ],
+              ),
+            ],
+          ),
+        ),
+
+      ),
+
+
+
+
 
      ],
     ),
