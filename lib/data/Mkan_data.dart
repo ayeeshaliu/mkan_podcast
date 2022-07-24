@@ -10,7 +10,7 @@ const LISTENING_LIST = [
     duration: "166 Min",
     color: Color.fromRGBO(170, 247, 214, 1),
     icon: Icon(Icons.play_circle_outline_rounded),
-    colors: Color.fromRGBO(3, 180, 97, 1),
+    colors: Color.fromRGBO(2, 209, 112, 1),
   ),
   Listening(
       title: "The Joe Experience At meet Up",

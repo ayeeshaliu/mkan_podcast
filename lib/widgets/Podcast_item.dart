@@ -36,35 +36,28 @@ class PodcastItem extends StatelessWidget {
             child: Container(
              width: 295,
              height: 179,
-             padding: const EdgeInsets.all(15),
+             // padding: const EdgeInsets.all(15),
              child: Stack(
                children: [
-                 Container(child: Row(
-                    // crossAxisAlignment: CrossAxisAlignment.end,
+
+                 Row(
                    mainAxisAlignment: MainAxisAlignment.end,
                    children: [
-                     Stack(
-                       children: [
-                         Container(
-                           child: Row(
-                             mainAxisAlignment: MainAxisAlignment.end,
-                             children: [
-                               SvgPicture.asset("assets/vectors/mic.svg",color: colors),
-                             ],
-                           ),
-                         ),
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.end,
-                           children: [
-                             SvgPicture.asset("assets/vectors/circles.svg",color: colors,
-                             ),
-                           ],
-                         ),
-                       ],
+                     SvgPicture.asset("assets/vectors/circles.svg",color: colors,
                      ),
                    ],
                  ),
 
+                 Column(
+                   mainAxisAlignment: MainAxisAlignment.end,
+                   children: [
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.end,
+                       children: [
+                         SvgPicture.asset("assets/vectors/mic.svg",color: colors),
+                       ],
+                     ),
+                   ],
                  ),
 
                  Column(

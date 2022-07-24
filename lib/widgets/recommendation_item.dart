@@ -36,7 +36,13 @@ class RecommendationItem extends StatelessWidget {
               child: Container(
                 child: Stack(
                   children: [
-                    SvgPicture.asset("assets/vectors/circles.svg",color: colors, fit: BoxFit.contain,
+                    Padding(
+                      padding: EdgeInsets.only(left: MediaQuery.of(context).viewInsets.left + 15, top: MediaQuery.of(context).viewInsets.top +10 ),
+                      child: Container(
+                        height: 35,
+                        child: SvgPicture.asset("assets/vectors/circles.svg",color: colors,
+                        ),
+                      ),
                     ),
                     Icon(Icons.play_circle_outline_rounded, color: colors, size: 32,),
                     SizedBox(height: 10,),
