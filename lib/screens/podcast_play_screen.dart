@@ -64,19 +64,18 @@ class PodcastPlay extends StatelessWidget {
                     child: Stack(
                       children: [
                         Column(
-                          //mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Row(
-                              //mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                FittedBox(child: SvgPicture.asset("assets/vectors/circles.svg",color: color,),
-                                fit: BoxFit.fill,),
+                                SvgPicture.asset("assets/vectors/circles.svg",color: color,),
                               ],
                             ),
                           ],
                         ),
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
