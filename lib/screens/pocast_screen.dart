@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Classholder/Listening.dart';
-import '../data/Mkan_data.dart';
 import '../widgets/Podcast_item.dart';
 
 class PodcastScreen extends StatefulWidget {
@@ -23,6 +22,27 @@ class _PodcastScreenState extends State<PodcastScreen> {
   List<String> urlArray = [];
   List<int> countArray = [];
 
+  bool isLoading = true;
+
+  String getDuration(int duration) {
+    String time;
+    int durationTime;
+
+    if (duration < 60000) {
+      time = 'Sec';
+      durationTime = (duration ~/ 6000);
+    } else {
+      if (duration >= 60000 && duration < 600000) {
+        time = 'Min';
+        durationTime = (duration ~/ 60000);
+      } else {
+        time = 'Hrs';
+        durationTime = (duration ~/ 600000);
+      }
+    }
+    return durationTime.toString() + ' ' + time;
+  }
+
   loadRecommendations() async {
     Dio dio = Dio();
     Response response;
@@ -34,22 +54,24 @@ class _PodcastScreenState extends State<PodcastScreen> {
         List playArray = response.data["data"]["playlists"];
         for (int i = 0; i < playArray.length; i++) {
           setState(() {
-
             titleArray.add(playArray[i]['title']);
             durationArray.add(playArray[i]['duration']);
             nameArray.add(playArray[i]["user"]['full_name']);
             urlArray.add(playArray[i]['uri']);
             countArray.add(playArray[i]['track_count']);
-            horizontalArray.add(
-              Listening(
-              title: playArray[i]["title"],
-              author: playArray[i]["user"]["full_name"],
-              duration: playArray[i]["duration"].toString(),
-              color: i.isOdd ? Color.fromRGBO(170, 247, 214, 1) : Color.fromRGBO(252, 217, 255, 1),
-              icon: Icon(Icons.play_circle_outline_rounded),
-              colors: i.isOdd ?  Color.fromRGBO(2, 209, 112, 1) : Color.fromRGBO(238, 51, 255, 1),
-            ),
-            );
+            horizontalArray.add(Listening(
+                title: playArray[i]["title"],
+                author: playArray[i]["user"]["full_name"],
+                duration: getDuration(playArray[i]['duration']),
+                color: i.isOdd
+                    ? Color.fromRGBO(170, 247, 214, 1)
+                    : Color.fromRGBO(252, 217, 255, 1),
+                icon: Icon(Icons.play_circle_outline_rounded),
+                colors: i.isOdd
+                    ? Color.fromRGBO(2, 209, 112, 1)
+                    : Color.fromRGBO(238, 51, 255, 1),
+                trackCount: playArray[i]['track_count'],
+                url: playArray[i]['uri']));
           });
         }
 
@@ -63,6 +85,9 @@ class _PodcastScreenState extends State<PodcastScreen> {
       log(e.message.toString());
       log(e.response.toString());
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -124,18 +149,27 @@ class _PodcastScreenState extends State<PodcastScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 200,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: horizontalArray
-                  .map(
-                    (pod) => PodcastItem(pod.icon, pod.duration, pod.title,
-                        pod.author, pod.color, pod.colors),
-                  )
-                  .toList(),
-            ),
-          ),
+          isLoading
+              ? Text('Loading...')
+              : SizedBox(
+                  height: 200,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: horizontalArray
+                        .map(
+                          (pod) => PodcastItem(
+                              pod.icon,
+                              pod.duration,
+                              pod.title,
+                              pod.author,
+                              pod.url,
+                              pod.color,
+                              pod.colors,
+                              pod.trackCount),
+                        )
+                        .toList(),
+                  ),
+                ),
         ],
       ),
     );

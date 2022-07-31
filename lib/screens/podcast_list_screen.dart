@@ -1,28 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:mkan_podcast/data/Mkan_data.dart';
 import 'package:mkan_podcast/screens/podcast_play_screen.dart';
 import 'package:mkan_podcast/widgets/recommendation_item.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:share_plus/share_plus.dart';
 
-
-class PodcastListScreen extends StatelessWidget {
+class PodcastListScreen extends StatefulWidget {
   final Color color;
   final String title;
   final String author;
+  final int trackCount;
+  final String url;
 
   const PodcastListScreen(
-      this.color,
-      this.title,
-      this.author,
-      );
+      this.color, this.title, this.author, this.trackCount, this.url);
 
-  void playSelector (BuildContext ctx) {
-    Navigator.of(ctx).push(CupertinoPageRoute(builder: (_){
-      return PodcastPlay(color, title, author);
+  @override
+  State<PodcastListScreen> createState() => _PodcastListScreenState();
+}
+
+class _PodcastListScreenState extends State<PodcastListScreen> {
+  void playSelector(BuildContext ctx) {
+    Navigator.of(ctx).push(CupertinoPageRoute(builder: (_) {
+      return PodcastPlay(widget.color, widget.title, widget.author);
     }));
   }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -33,24 +38,28 @@ class PodcastListScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-            Row(
-              //crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  iconSize: 30,
-                  color: Colors.black,
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: Icon(Icons.arrow_back),),
-
-        IconButton(
-            iconSize: 30,
-              color: Colors.black,
-              onPressed: (){},
-              icon: Icon(LineIcons.horizontalEllipsis, size: 30, color: Colors.black,),),
-              ],
-            ),
+                Row(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      iconSize: 30,
+                      color: Colors.black,
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: Icon(Icons.arrow_back),
+                    ),
+                    IconButton(
+                      iconSize: 30,
+                      color: Colors.black,
+                      onPressed: () {},
+                      icon: Icon(
+                        LineIcons.horizontalEllipsis,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
                 //SizedBox(height: 30,),
                 Column(
                   //crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,7 +68,8 @@ class PodcastListScreen extends StatelessWidget {
                       //crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 25),
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).viewInsets.top + 25),
                           child: Column(
                             children: [
                               Container(
@@ -72,19 +82,18 @@ class PodcastListScreen extends StatelessWidget {
                                 child: Container(
                                   child: Stack(
                                     children: [
-                                      SvgPicture.asset("assets/vectors/circles.svg",color: color),
-                                      SvgPicture.asset("assets/vectors/mic.svg",color: color),
+                                      SvgPicture.asset(
+                                          "assets/vectors/circles.svg",
+                                          color: widget.color),
+                                      SvgPicture.asset("assets/vectors/mic.svg",
+                                          color: widget.color),
                                     ],
                                   ),
                                 ),
-
                               ),
                             ],
                           ),
                         ),
-
-                     
-
                         Column(
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           // mainAxisAlignment: MainAxisAlignment.start,
@@ -95,21 +104,29 @@ class PodcastListScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 150,
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 20,  left: MediaQuery.of(context).viewInsets.left +15),
-                                    child: Text("The Joe Experience at..",
+                                    padding: EdgeInsets.only(
+                                        top: MediaQuery.of(context)
+                                                .viewInsets
+                                                .top +
+                                            20,
+                                        left: MediaQuery.of(context)
+                                                .viewInsets
+                                                .left +
+                                            15),
+                                    child: Text(
+                                      widget.title,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-
                                       style: TextStyle(
                                           fontSize: 28,
-                                          fontWeight: FontWeight.w700
-                                      ),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                            Text(author,
+                            Text(
+                              widget.author,
                               textAlign: TextAlign.start,
                             ),
                           ],
@@ -123,21 +140,41 @@ class PodcastListScreen extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              IconButton(onPressed: (){}, icon: Icon(LineIcons.soundcloud, size: 27,color: Color.fromRGBO(3, 180, 97, 1),),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  LineIcons.soundcloud,
+                                  size: 27,
+                                  color: Color.fromRGBO(3, 180, 97, 1),
+                                ),
                               ),
-                              Text("10 Episodes"),
+                              Text("${widget.trackCount.toString()} Episodes"),
                             ],
                           ),
                           Column(
                             children: [
-                              IconButton(onPressed: (){}, icon: Icon(Icons.share_outlined,size: 27, color: Color.fromRGBO(3, 180, 97, 1),),
+                              IconButton(
+                                onPressed: () {
+                                  Share.share(widget.url);
+                                },
+                                icon: Icon(
+                                  Icons.share_outlined,
+                                  size: 27,
+                                  color: Color.fromRGBO(3, 180, 97, 1),
+                                ),
                               ),
                               Text("Shares"),
                             ],
                           ),
                           Column(
                             children: [
-                              IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border_outlined, size:27,color: Color.fromRGBO(3, 180, 97, 1),),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.favorite_border_outlined,
+                                  size: 27,
+                                  color: Color.fromRGBO(3, 180, 97, 1),
+                                ),
                               ),
                               Text("Favourites"),
                             ],
@@ -149,14 +186,16 @@ class PodcastListScreen extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 25, bottom: MediaQuery.of(context).viewInsets.bottom +10),
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).viewInsets.top + 25,
+                      bottom: MediaQuery.of(context).viewInsets.bottom + 10),
                   child: Container(
-                    child: Text("Episodes",
+                    child: Text(
+                      "Episodes",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                       ),
-
                     ),
                   ),
                 ),
@@ -166,24 +205,23 @@ class PodcastListScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.65,
                     child: ListView(
                       scrollDirection: Axis.vertical,
-                      children: RECOMMENDATION_LIST.map((epsd) => InkWell(
-                        child: RecommendationItem(
-                            epsd.icon,
-                            epsd.duration,
-                            epsd.title,
-                            epsd.author,
-                            epsd.color,
-                            epsd.colors
-                        ),
-                        onTap: ()=> playSelector(context),
-                      ),
-                      ).toList(),
-
+                      children: RECOMMENDATION_LIST
+                          .map(
+                            (epsd) => InkWell(
+                              child: RecommendationItem(
+                                  epsd.icon,
+                                  epsd.duration,
+                                  epsd.title,
+                                  epsd.author,
+                                  epsd.color,
+                                  epsd.colors),
+                              onTap: () => playSelector(context),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
                 ),
-
-
               ],
             ),
           ),
