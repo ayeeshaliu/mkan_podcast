@@ -64,15 +64,25 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/vectors/circles.svg
+      - assets/vectors/mic.svg
+      - assets/vectors/slider.svg
+      - assets/vectors/shuffle.svg
+      - assets/vectors/speaker.svg
 #    - assets/images/
 #    - assets/fonts/
-#    - fonts:
-#        - family:
-    - assets/vectors/circles.svg
-    - assets/vectors/mic.svg
-    - assets/vectors/slider.svg
-    - assets/vectors/shuffle.svg
-    - assets/vectors/speaker.svg
+    - fonts:
+        - family: SourceSansPro
+          fonts:
+            - asset: fonts/SourceSansPro-Black.ttf
+            - asset: fonts/SourceSansPro-Bold.ttf
+            - asset: fonts/SourceSansPro-ExtraLight.ttf
+            - asset: fonts/SourceSansPro-Light.ttf
+            - asset: fonts/SourceSansPro-Regular.ttf
+
+
+
+
 
   # To add assets to your application, add an assets section, like this:
   #assets:

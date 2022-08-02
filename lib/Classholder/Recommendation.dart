@@ -8,6 +8,9 @@ class Recommendation{
   final String author;
   final Color color;
   final Color colors;
+  final int trackCount;
+  final String url;
+
 
 
   const Recommendation({
@@ -17,6 +20,8 @@ class Recommendation{
     required this.author,
     required this.color,
     required this.colors,
+    required this.trackCount,
+   required this.url,
 
   } );
 }

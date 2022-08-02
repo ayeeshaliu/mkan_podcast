@@ -10,6 +10,8 @@ class RecommendationItem extends StatelessWidget {
   final String author;
   final Color color;
   final Color colors;
+  final int trackCount;
+  final String url;
 
 
   const RecommendationItem(
@@ -18,7 +20,10 @@ class RecommendationItem extends StatelessWidget {
      this.title,
      this.author,
      this.color,
-      this.colors
+      this.colors,
+      this.trackCount,
+      this.url,
+
 
   );
   @override

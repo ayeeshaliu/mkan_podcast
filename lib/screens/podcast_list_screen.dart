@@ -1,11 +1,16 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:mkan_podcast/data/Mkan_data.dart';
+//import 'package:mkan_podcast/data/Mkan_data.dart';
 import 'package:mkan_podcast/screens/podcast_play_screen.dart';
 import 'package:mkan_podcast/widgets/recommendation_item.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../Classholder/Recommendation.dart';
 
 class PodcastListScreen extends StatefulWidget {
   final Color color;
@@ -22,6 +27,83 @@ class PodcastListScreen extends StatefulWidget {
 }
 
 class _PodcastListScreenState extends State<PodcastListScreen> {
+
+  List verticalArray = [];
+  List<String> titleArray = [];
+  List<int> durationArray = [];
+  List<String> nameArray = [];
+  List<String> urlArray = [];
+  List<int> countArray = [];
+
+  bool isLoading = true;
+
+  String getDuration(int duration) {
+    String time;
+    int durationTime;
+
+    if (duration < 60000) {
+      time = 'Sec';
+      durationTime = (duration ~/ 6000);
+    } else {
+      if (duration >= 60000 && duration < 600000) {
+        time = 'Min';
+        durationTime = (duration ~/ 60000);
+      } else {
+        time = 'Hrs';
+        durationTime = (duration ~/ 600000);
+      }
+    }
+    return durationTime.toString() + ' ' + time;
+  }
+
+  loadTracks() async {
+    Dio dio = Dio();
+    Response response;
+    try {
+      response = await dio
+          .get("https://mkan-media.herokuapp.com/v1/audio/recommendations");
+      // log(response.toString());
+      if (response.data['success']) {
+        List recommendArray = response.data["data"]["playlists"];
+        for (int i = 0; i < recommendArray.length; i++) {
+          setState(() {
+            titleArray.add(recommendArray[i]['title']);
+            durationArray.add(recommendArray[i]['duration']);
+            nameArray.add(recommendArray[i]["user"]['full_name']);
+            urlArray.add(recommendArray[i]['uri']);
+            countArray.add(recommendArray[i]['track_count']);
+            verticalArray.add(Recommendation(
+                title: recommendArray[i]["title"],
+                author: recommendArray[i]["user"]["full_name"],
+                duration: getDuration(recommendArray[i]['duration']),
+                color: i.isOdd
+                    ? Color.fromRGBO(170, 247, 214, 1)
+                    : Color.fromRGBO(252, 217, 255, 1),
+                icon: Icon(Icons.play_circle_outline_rounded),
+                colors: i.isOdd
+                    ? Color.fromRGBO(2, 209, 112, 1)
+                    : Color.fromRGBO(238, 51, 255, 1),
+                trackCount: recommendArray[i]['track_count'],
+                url: recommendArray[i]['uri'],
+            ),
+            );
+          });
+        }
+
+        log(titleArray.toString());
+        log(durationArray.toString());
+        log(nameArray.toString());
+        log(urlArray.toString());
+        log(countArray.toString());
+      }
+    } on DioError catch (e) {
+      log(e.message.toString());
+      log(e.response.toString());
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
   void playSelector(BuildContext ctx) {
     Navigator.of(ctx).push(CupertinoPageRoute(builder: (_) {
       return PodcastPlay(widget.color, widget.title, widget.author);
@@ -200,12 +282,12 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
                   ),
                 ),
 
-                Expanded(
+               isLoading? Text("Loading...") :Expanded(
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.65,
                     child: ListView(
                       scrollDirection: Axis.vertical,
-                      children: RECOMMENDATION_LIST
+                      children: verticalArray
                           .map(
                             (epsd) => InkWell(
                               child: RecommendationItem(
@@ -214,7 +296,10 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
                                   epsd.title,
                                   epsd.author,
                                   epsd.color,
-                                  epsd.colors),
+                                  epsd.colors,
+                                epsd.trackUrl,
+                                epsd.url,
+                              ),
                               onTap: () => playSelector(context),
                             ),
                           )
@@ -228,5 +313,16 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
         ),
       ),
     );
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadTracks();
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 }
