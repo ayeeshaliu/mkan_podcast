@@ -51,7 +51,13 @@ class RecommendationItem extends StatelessWidget {
                     ),
                     Icon(Icons.play_circle_outline_rounded, color: colors, size: 32,),
                     SizedBox(height: 10,),
-                    Text(duration),
+                    Text(duration,
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontFamily: "SourceSansPro",
+                      fontWeight: FontWeight.w400,
+                      color: colors,
+                    ),),
                   ],
                 ),
               ),
@@ -73,10 +79,36 @@ class RecommendationItem extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text(title, overflow: TextOverflow.ellipsis,),
+                      Row(
+                        children: [
+                          Container(
+                            child: Flexible(
+                              child: Text(title,
+                                style: TextStyle(
+                                  fontFamily: "SourceSansPro",
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                overflow: TextOverflow.clip,),
+                            ),
+                            width: 150,
+                          ),
+                        ],
+                      ),
 
                       SizedBox(width: 15,),
-                      Text(author),
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 10, right: MediaQuery.of(context).viewInsets.right + 45 ),
+                        child: Text(author,
+                        overflow: TextOverflow.visible,
+
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 13,
+                          fontFamily: "SourceSansPro",
+                          color: Color.fromRGBO(0, 25, 14, 0.5),
+                        ),),
+                      ),
                     ],
                   ),
                   Icon(LineIcons.horizontalEllipsis, color: Colors.black87, size: 25.0,),

@@ -100,6 +100,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             // SizedBox(height: MediaQuery.of(context).size.height,),
             Text("Recommended",
               style: TextStyle(
+                fontFamily: "SourceSansPro",
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 //fontFamily: "ProductSans",

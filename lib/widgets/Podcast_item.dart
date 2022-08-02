@@ -67,42 +67,66 @@ class PodcastItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(title,
-                      style: TextStyle(
-                        fontFamily: "SourceSansPro",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(author,
-                      style: TextStyle(
-                        fontFamily: "SourceSansPro",
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400
-                      ),),
-                      SizedBox(
-                        height: 35,
-                      ),
-                      Row(
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).viewInsets.vertical + 20, horizontal: MediaQuery.of(context).viewInsets.horizontal + 15),
+                      child: Column(
                         children: [
-                          Icon(
-                            Icons.play_circle_outline_rounded,
-                            color: colors,
+                          Row(
+                            children: [
+                              Container(
+                                child: Text(title,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontFamily: "SourceSansPro",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),),
+                                width: 200,
+                              ),
+                            ],
                           ),
-                          Text(duration,
-                          style: TextStyle(
-                            fontFamily: "SourceSandPro",
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400,
-                            color: colors,
-                          ),),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(author,
+                              style: TextStyle(
+                                fontFamily: "SourceSansPro",
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400
+                              ),),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.vertical + 30),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.play_circle_outline_rounded,
+                                  color: colors,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: MediaQuery.of(context).viewInsets.left + 5),
+                                  child: Text(duration,
+                                  style: TextStyle(
+                                    fontFamily: "SourceSandPro",
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w400,
+                                    color: colors,
+                                  ),),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),
