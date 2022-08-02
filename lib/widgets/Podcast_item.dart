@@ -69,11 +69,21 @@ class PodcastItem extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text(title),
+                      Text(title,
+                      style: TextStyle(
+                        fontFamily: "SourceSansPro",
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(author),
+                      Text(author,
+                      style: TextStyle(
+                        fontFamily: "SourceSansPro",
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400
+                      ),),
                       SizedBox(
                         height: 35,
                       ),
@@ -83,7 +93,13 @@ class PodcastItem extends StatelessWidget {
                             Icons.play_circle_outline_rounded,
                             color: colors,
                           ),
-                          Text(duration),
+                          Text(duration,
+                          style: TextStyle(
+                            fontFamily: "SourceSandPro",
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: colors,
+                          ),),
                         ],
                       ),
                     ],

@@ -105,7 +105,7 @@ class _PodcastScreenState extends State<PodcastScreen> {
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w700,
-                //fontFamily: "ProductSans",
+                fontFamily: "SourceSansPro",
               ),
             ),
           ),
