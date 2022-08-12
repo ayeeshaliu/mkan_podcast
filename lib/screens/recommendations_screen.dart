@@ -17,13 +17,45 @@ class RecommendationScreen extends StatefulWidget {
 class _RecommendationScreenState extends State<RecommendationScreen> {
 
   List verticalArray = [];
-  List<String> titleArray = [];
-  List<int> durationArray = [];
-  List<String> nameArray = [];
-  List<String> urlArray = [];
-  List<int> countArray = [];
+  // List<String> titleArray = [];
+  // List<int> durationArray = [];
+  // List<String> nameArray = [];
+  // List<String> urlArray = [];
+  // List<int> countArray = [];
+
+  // List<int> idArray =[];
+  // List<int> trackDurationArray = [];
+  // List<String> trackTitleArray =[];
+  // List<String> trackUriArray =[];
+  // List<String> permalinkUriArray =[];
+  // List<String> streamUrlArray
+
+  // final TextEditingController _filter = TextEditingController();
+  // String _searchText = "";
+  // List searchReturns = []; // Data from API
+  // List filteredReturns = []; //Data filtered by search text
+
+
+
+
+
 
   bool isLoading = true;
+
+  // PageState() {
+  //   _filter.addListener(() {
+  //     if(_filter.text.isEmpty) {
+  //       setState(() {
+  //         _searchText = "";
+  //         filteredReturns = searchReturns;
+  //       });
+  //     } else {
+  //       setState(() {
+  //         _searchText = _filter.text;
+  //       });
+  //     }
+  //   });
+  // }
 
   String getDuration(int duration) {
     String time;
@@ -40,7 +72,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         time = 'Hrs';
         durationTime = (duration ~/ 600000);
       }
-    }
+    } 
     return durationTime.toString() + ' ' + time;
   }
 
@@ -50,16 +82,21 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     try {
       response = await dio
           .get("https://mkan-media.herokuapp.com/v1/audio/recommendations");
+      // List verticalArray = [];
+
       // log(response.toString());
       if (response.data['success']) {
-        List recommendArray = response.data["data"]["playlists"];
+        List recommendArray = response.data["data"]["tracks"];
         for (int i = 0; i < recommendArray.length; i++) {
           setState(() {
-            titleArray.add(recommendArray[i]['title']);
-            durationArray.add(recommendArray[i]['duration']);
-            nameArray.add(recommendArray[i]["user"]['full_name']);
-            urlArray.add(recommendArray[i]['uri']);
-            countArray.add(recommendArray[i]['track_count']);
+            // searchReturns = verticalArray;
+            // filteredReturns = searchReturns;
+
+            // titleArray.add(recommendArray[i]['title']);
+            // durationArray.add(recommendArray[i]['duration']);
+            // nameArray.add(recommendArray[i]["user"]['full_name']);
+            // urlArray.add(recommendArray[i]['uri']);
+            // countArray.add(recommendArray[i]['track_count']);
             verticalArray.add(Recommendation(
                 title: recommendArray[i]["title"],
                 author: recommendArray[i]["user"]["full_name"],
@@ -71,17 +108,25 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                 colors: i.isOdd
                     ? Color.fromRGBO(2, 209, 112, 1)
                     : Color.fromRGBO(238, 51, 255, 1),
-                trackCount: recommendArray[i]['track_count'],
+                //trackCount: recommendArray[i]['track_count'],
                 url: recommendArray[i]['uri'],
+              id: recommendArray[i]["id"],
+              trackTitle: recommendArray[i]["title"],
+              permalinkUri: recommendArray[i]["permalink_url"],
+              artworkUrl: recommendArray[i]["artwork_url"],
+              streamUrl: recommendArray[i]["stream_url"],
+
+
+
             ));
           });
         }
 
-        log(titleArray.toString());
-        log(durationArray.toString());
-        log(nameArray.toString());
-        log(urlArray.toString());
-        log(countArray.toString());
+        // log(titleArray.toString());
+        // log(durationArray.toString());
+        // log(nameArray.toString());
+        // log(urlArray.toString());
+        // log(countArray.toString());
       }
     } on DioError catch (e) {
       log(e.message.toString());
@@ -91,6 +136,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       isLoading = false;
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -121,8 +168,14 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                   mend.author,
                   mend.color,
                   mend.colors,
-                mend.trackCount,
+                //mend.trackCount,
                 mend.url,
+                mend.id,
+                mend.trackTitle,
+                mend.permalinkUri,
+                mend.artworkUrl,
+                mend.streamUrl,
+
               ),
               ).toList(),
             ),

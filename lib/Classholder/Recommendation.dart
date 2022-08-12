@@ -8,8 +8,12 @@ class Recommendation{
   final String author;
   final Color color;
   final Color colors;
-  final int trackCount;
   final String url;
+  final int id;
+  final String trackTitle;
+  final String permalinkUri;
+  final String artworkUrl;
+  final String streamUrl;
 
 
 
@@ -20,8 +24,14 @@ class Recommendation{
     required this.author,
     required this.color,
     required this.colors,
-    required this.trackCount,
-   required this.url,
+    required this.url,
+    required this.id,
+    required this.trackTitle,
+    required this.permalinkUri,
+    required this.artworkUrl,
+    required this.streamUrl,
+
+
 
   } );
 }

@@ -10,6 +10,7 @@ class Listening {
   final Color colors;
   final int trackCount;
   final String url;
+  final int id;
 
   const Listening(
       {required this.title,
@@ -19,5 +20,7 @@ class Listening {
       required this.icon,
       required this.colors,
       required this.trackCount,
-      required this.url});
+      required this.url,
+        required this.id,
+      });
 }

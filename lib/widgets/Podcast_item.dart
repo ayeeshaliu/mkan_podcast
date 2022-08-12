@@ -12,6 +12,7 @@ class PodcastItem extends StatelessWidget {
   final Color color;
   final Color colors;
   final int trackCount;
+  final int id;
 
   const PodcastItem(
     this.icon,
@@ -22,12 +23,13 @@ class PodcastItem extends StatelessWidget {
     this.color,
     this.colors,
     this.trackCount,
+      this.id,
   );
 
   void podcastSelector(BuildContext ctx) {
     Navigator.of(ctx).push(CupertinoPageRoute(builder: (_) {
       return PodcastListScreen(
-          this.color, this.title, this.author, this.trackCount, this.url);
+          this.color, this.title, this.author, this.trackCount, this.url, this.id, this.colors);
     }));
   }
 
@@ -69,7 +71,7 @@ class PodcastItem extends StatelessWidget {
                   ),
                   Container(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).viewInsets.vertical + 20, horizontal: MediaQuery.of(context).viewInsets.horizontal + 15),
+                      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).viewInsets.vertical + 10, horizontal: MediaQuery.of(context).viewInsets.horizontal + 15),
                       child: Column(
                         children: [
                           Row(
@@ -104,7 +106,7 @@ class PodcastItem extends StatelessWidget {
                             height: 35,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.vertical + 30),
+                            padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.vertical + 20),
                             child: Row(
                               children: [
                                 Icon(

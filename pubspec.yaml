@@ -38,6 +38,7 @@ dependencies:
   line_icons: ^2.0.1
   dio: ^4.0.6
   share_plus: ^4.0.10
+  just_audio: ^0.9.28
 
 dev_dependencies:
   flutter_test:
@@ -108,11 +109,11 @@ flutter:
   fonts:
     - family: SourceSansPro
       fonts:
-        - asset: fonts/SourceSansPro-Black.ttf
-        - asset: fonts/SourceSansPro-Bold.ttf
-        - asset: fonts/SourceSansPro-ExtraLight.ttf
-        - asset: fonts/SourceSansPro-Light.ttf
-        - asset: fonts/SourceSansPro-Regular.ttf
+        - asset: assets/fonts/SourceSansPro-Black.ttf
+        - asset: assets/fonts/SourceSansPro-Bold.ttf
+        - asset: assets/fonts/SourceSansPro-ExtraLight.ttf
+        - asset: assets/fonts/SourceSansPro-Light.ttf
+        - asset: assets/fonts/SourceSansPro-Regular.ttf
 
 
 

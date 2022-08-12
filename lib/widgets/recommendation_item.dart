@@ -3,15 +3,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class RecommendationItem extends StatelessWidget {
+import '../screens/podcast_play_screen.dart';
+
+class RecommendationItem extends StatefulWidget {
   final Icon icon;
   final String duration;
   final String title;
   final String author;
   final Color color;
   final Color colors;
-  final int trackCount;
+  //final int trackCount;
   final String url;
+  final int id;
+  final String trackTitle;
+  final String permalinkUri;
+  final String artworkUrl;
+  final String streamUrl;
+
+
 
 
   const RecommendationItem(
@@ -21,18 +30,36 @@ class RecommendationItem extends StatelessWidget {
      this.author,
      this.color,
       this.colors,
-      this.trackCount,
+      //this.trackCount,
       this.url,
+      this.id,
+      this.trackTitle,
+      this.permalinkUri,
+      this.artworkUrl,
+      this.streamUrl,
 
 
   );
+
+  @override
+  State<RecommendationItem> createState() => _RecommendationItemState();
+}
+
+class _RecommendationItemState extends State<RecommendationItem> {
   @override
   Widget build(BuildContext context) {
     return Column(
       //mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        GestureDetector(
+            onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (_) {
+                  return PodcastPlay(widget.color, widget.title, widget.author, widget.colors, widget.url,);
+                }));
+
+            },
+            child: Row(
           children: [
             Container(
               width: 90,
@@ -45,29 +72,29 @@ class RecommendationItem extends StatelessWidget {
                       padding: EdgeInsets.only(left: MediaQuery.of(context).viewInsets.left + 15, top: MediaQuery.of(context).viewInsets.top +10 ),
                       child: Container(
                         height: 35,
-                        child: SvgPicture.asset("assets/vectors/circles.svg",color: colors,
+                        child: SvgPicture.asset("assets/vectors/circles.svg",color: widget.colors,
                         ),
                       ),
                     ),
-                    Icon(Icons.play_circle_outline_rounded, color: colors, size: 32,),
+                    Icon(Icons.play_circle_outline_rounded, color: widget.colors, size: 32,),
                     SizedBox(height: 10,),
-                    Text(duration,
+                    Text(widget.duration,
                     style: TextStyle(
                       fontSize: 11,
                       fontFamily: "SourceSansPro",
                       fontWeight: FontWeight.w400,
-                      color: colors,
+                      color: widget.colors,
                     ),),
                   ],
                 ),
               ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors:[ color.withOpacity(0.7),
-                      color,
+                    colors:[ widget.color.withOpacity(0.7),
+                      widget.color,
                     ]
                 ),
-                color: color,
+                color: widget.color,
                 borderRadius: BorderRadius.circular(20),
 
               ),
@@ -83,7 +110,7 @@ class RecommendationItem extends StatelessWidget {
                         children: [
                           Container(
                             child: Flexible(
-                              child: Text(title,
+                              child: Text(widget.title,
                                 style: TextStyle(
                                   fontFamily: "SourceSansPro",
                                   fontSize: 15,
@@ -99,7 +126,7 @@ class RecommendationItem extends StatelessWidget {
                       SizedBox(width: 15,),
                       Padding(
                         padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 10, right: MediaQuery.of(context).viewInsets.right + 45 ),
-                        child: Text(author,
+                        child: Text(widget.author,
                         overflow: TextOverflow.visible,
 
                         style: TextStyle(
@@ -120,8 +147,9 @@ class RecommendationItem extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        )),
         SizedBox(height: 13.2,),
+        Divider(),
       ],
     );
   }

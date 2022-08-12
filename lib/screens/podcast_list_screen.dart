@@ -12,15 +12,19 @@ import 'package:share_plus/share_plus.dart';
 
 import '../Classholder/Recommendation.dart';
 
+
+
 class PodcastListScreen extends StatefulWidget {
   final Color color;
   final String title;
   final String author;
   final int trackCount;
   final String url;
+  final int id;
+  final Color colors;
 
   const PodcastListScreen(
-      this.color, this.title, this.author, this.trackCount, this.url);
+      this.color, this.title, this.author, this.trackCount, this.url, this.id, this.colors);
 
   @override
   State<PodcastListScreen> createState() => _PodcastListScreenState();
@@ -61,17 +65,17 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
     Response response;
     try {
       response = await dio
-          .get("https://mkan-media.herokuapp.com/v1/audio/recommendations");
+          .get("https://mkan-media.herokuapp.com/v1/audio/tracks?playlistId=${widget.id}");
       // log(response.toString());
       if (response.data['success']) {
-        List recommendArray = response.data["data"]["playlists"];
+        List recommendArray = response.data["data"];
         for (int i = 0; i < recommendArray.length; i++) {
           setState(() {
-            titleArray.add(recommendArray[i]['title']);
-            durationArray.add(recommendArray[i]['duration']);
-            nameArray.add(recommendArray[i]["user"]['full_name']);
-            urlArray.add(recommendArray[i]['uri']);
-            countArray.add(recommendArray[i]['track_count']);
+            // titleArray.add(recommendArray[i]['title']);
+            // durationArray.add(recommendArray[i]['duration']);
+            // nameArray.add(recommendArray[i]["user"]['full_name']);
+            // urlArray.add(recommendArray[i]['uri']);
+            // countArray.add(recommendArray[i]['track_count']);
             verticalArray.add(Recommendation(
                 title: recommendArray[i]["title"],
                 author: recommendArray[i]["user"]["full_name"],
@@ -83,8 +87,16 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
                 colors: i.isOdd
                     ? Color.fromRGBO(2, 209, 112, 1)
                     : Color.fromRGBO(238, 51, 255, 1),
-                trackCount: recommendArray[i]['track_count'],
                 url: recommendArray[i]['uri'],
+              id: recommendArray[i]["id"],
+              trackTitle: recommendArray[i]["title"],
+              permalinkUri: recommendArray[i]["permalink_url"],
+              artworkUrl: recommendArray[i]["artwork_url"],
+              streamUrl: recommendArray[i]["stream_url"],
+
+
+
+
             ),
             );
           });
@@ -106,7 +118,8 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
   }
   void playSelector(BuildContext ctx) {
     Navigator.of(ctx).push(CupertinoPageRoute(builder: (_) {
-      return PodcastPlay(widget.color, widget.title, widget.author);
+      return PodcastPlay(widget.color, widget.title, widget.author, widget.colors, widget.url,
+      );
     }));
   }
 
@@ -297,8 +310,12 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
                                   epsd.author,
                                   epsd.color,
                                   epsd.colors,
-                                epsd.trackUrl,
                                 epsd.url,
+                                epsd.id,
+                                epsd.trackTitle,
+                                epsd.permalinkUri,
+                                epsd.artworkUrl,
+                                epsd.streamUrl,
                               ),
                               onTap: () => playSelector(context),
                             ),
@@ -314,6 +331,7 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
       ),
     );
   }
+
   @override
   void initState() {
     // TODO: implement initState
