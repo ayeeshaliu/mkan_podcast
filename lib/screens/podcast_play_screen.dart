@@ -161,29 +161,14 @@ class PodcastPlay extends StatelessWidget {
           height: 20,
       ),
 
-      // Container(
-      //     child: InkWell(child: SvgPicture.asset("assets/vectors/slider.svg"),
-      //       onTap: (){},
-      //     ),
-      // ),
-      // Container(
-      //   child: Slider(
-      //     activeColor: colors,
-      //     inactiveColor: color,
-      //     min: 0,
-      //     max: duration.inSeconds.toDouble(),
-      //     value: position.inSeconds.toDouble(),
-      //     onChanged: (value) {},
-      //
-      //   ),
-      // ),
+      Container(
+          child: InkWell(child: SvgPicture.asset("assets/vectors/slider.svg"),
+            onTap: (){},
+          ),
+      ),
 
-      // Row(
-      //   children: [
-      //     Text(formatTime(position)),
-      //     Text(formatTime(duration - position)),
-      //   ],
-      // ),
+
+
       SizedBox(
           height: 20,
       ),
@@ -209,18 +194,11 @@ class PodcastPlay extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Icon(Icons.fast_rewind, size: 40, color: Colors.black,),
-             // IconButton(
-             //     onPressed: () async {
-             //       if (isPlaying) {
-             //         await audioPlayer.pause();
-             //       } else {
-             //         String url =
-             //             "https://mkan-media.herokuapp.com/v1/audio/recommendations";
-             //         await audioPlayer.play(url);
-             //
-             //       }
-             //     },
-             //     icon: Icon( isPlaying? Icons.pause : Icons.play_arrow),),
+             IconButton(
+                 onPressed: () {
+
+                 },
+                 icon: Icon(Icons.pause, color: Colors.black, size: 30,),),
               Icon(Icons.fast_forward, size: 40, color: Colors.black,),
             ],
           ),

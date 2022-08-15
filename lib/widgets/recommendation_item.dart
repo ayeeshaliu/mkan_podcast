@@ -65,28 +65,26 @@ class _RecommendationItemState extends State<RecommendationItem> {
               width: 90,
               height: 90,
               padding: const EdgeInsets.all(15),
-              child: Container(
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: MediaQuery.of(context).viewInsets.left + 15, top: MediaQuery.of(context).viewInsets.top +10 ),
-                      child: Container(
-                        height: 35,
-                        child: SvgPicture.asset("assets/vectors/circles.svg",color: widget.colors,
-                        ),
-                      ),
+              child: Stack(
+                children: [
+                  SvgPicture.asset("assets/vectors/circles.svg",color: widget.colors,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).viewInsets.vertical + 15),
+                    child: Column(
+                      children: [
+                        Icon(Icons.play_circle_outline_rounded, color: widget.colors, size: 32,),
+                      ],
                     ),
-                    Icon(Icons.play_circle_outline_rounded, color: widget.colors, size: 32,),
-                    SizedBox(height: 10,),
-                    Text(widget.duration,
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontFamily: "SourceSansPro",
-                      fontWeight: FontWeight.w400,
-                      color: widget.colors,
-                    ),),
-                  ],
-                ),
+                  ),
+                  Text(widget.duration,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontFamily: "SourceSansPro",
+                    fontWeight: FontWeight.w400,
+                    color: widget.colors,
+                  ),),
+                ],
               ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
