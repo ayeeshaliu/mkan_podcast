@@ -69,21 +69,24 @@ class _RecommendationItemState extends State<RecommendationItem> {
                 children: [
                   SvgPicture.asset("assets/vectors/circles.svg",color: widget.colors,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).viewInsets.vertical + 15),
-                    child: Column(
-                      children: [
-                        Icon(Icons.play_circle_outline_rounded, color: widget.colors, size: 32,),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.play_circle_outline_rounded, color: widget.colors, size: 32,),
+                      //SizedBox(height: 5,),
+                      Text(widget.duration,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: "SourceSansPro",
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),),
+
+
+                    ],
                   ),
-                  Text(widget.duration,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontFamily: "SourceSansPro",
-                    fontWeight: FontWeight.w400,
-                    color: widget.colors,
-                  ),),
+
+
                 ],
               ),
               decoration: BoxDecoration(
