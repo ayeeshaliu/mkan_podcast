@@ -40,10 +40,18 @@ dependencies:
   share_plus: ^4.0.10
   just_audio: ^0.9.28
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   http: ^0.13.4
+  flutter_native_splash: ^2.2.7
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/fit.png
+  andriod: true
+  ios: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -65,29 +73,29 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-      - assets/vectors/circles.svg
-      - assets/vectors/mic.svg
-      - assets/vectors/slider.svg
-      - assets/vectors/shuffle.svg
-      - assets/vectors/speaker.svg
-#    - assets/images/
-#    - assets/fonts/
-#
-#      - fonts:
-#          - family: SourceSansPro
-#              fonts:
-#                  - asset: fonts/SourceSansPro-Black.ttf
-#                    - asset: fonts/SourceSansPro-Bold.ttf
-#                    - asset: fonts/SourceSansPro-ExtraLight.ttf
-#                    - asset: fonts/SourceSansPro-Light.ttf
-#                    - asset: fonts/SourceSansPro-Regular.ttf
+    - assets/vectors/circles.svg
+    - assets/vectors/mic.svg
+    - assets/vectors/slider.svg
+    - assets/vectors/shuffle.svg
+    - assets/vectors/speaker.svg
+    #    - assets/images/
+    #    - assets/fonts/
+    #
+    #      - fonts:
+    #          - family: SourceSansPro
+    #              fonts:
+    #                  - asset: fonts/SourceSansPro-Black.ttf
+    #                    - asset: fonts/SourceSansPro-Bold.ttf
+    #                    - asset: fonts/SourceSansPro-ExtraLight.ttf
+    #                    - asset: fonts/SourceSansPro-Light.ttf
+    #                    - asset: fonts/SourceSansPro-Regular.ttf
 
 
 
 
 
     # To add assets to your application, add an assets section, like this:
-  #assets:
+    #assets:
     #- icons/heart.jpg
     #- icons/podcast.jpg
     #- icons/settings.jpg
@@ -105,7 +113,7 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
-#   example:
+  #   example:
   fonts:
     - family: SourceSansPro
       fonts:
