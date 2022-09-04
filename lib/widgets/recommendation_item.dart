@@ -67,8 +67,8 @@ class _RecommendationItemState extends State<RecommendationItem> {
               padding: const EdgeInsets.all(15),
               child: Stack(
                 children: [
-                  SvgPicture.asset("assets/vectors/circles.svg",color: widget.colors,
-                  ),
+                  // SvgPicture.asset("assets/vectors/circles.svg",color: widget.colors,
+                  // ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

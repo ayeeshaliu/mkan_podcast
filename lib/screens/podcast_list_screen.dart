@@ -129,7 +129,7 @@ class _PodcastListScreenState extends State<PodcastListScreen> {
       child: CupertinoPageScaffold(
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: EdgeInsets.only(right: MediaQuery.of(context).viewInsets.right +15, left: MediaQuery.of(context).viewInsets.left +15, top: MediaQuery.of(context).viewInsets.top +30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

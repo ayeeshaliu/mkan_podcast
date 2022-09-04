@@ -6,6 +6,8 @@ import 'package:just_audio/just_audio.dart';
 
 class PodcastPlay extends StatelessWidget {
 
+  double sliderValue= 100;
+
   final Color color;
    final String title;
    final String author;
@@ -21,6 +23,7 @@ class PodcastPlay extends StatelessWidget {
       );
 
   //const PodcastPlay({Key? key}) : super(key: key);
+
 
   // final audioPlayer = AudioPlayer();
   // bool isPlaying = false;
@@ -43,15 +46,18 @@ class PodcastPlay extends StatelessWidget {
 
 
 
+
   @override
   Widget build(BuildContext context) {
    // MediaQuery.of(context).size.height;
     return Material(
       child: CupertinoPageScaffold(
-        child: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).viewInsets.horizontal +15, vertical: MediaQuery.of(context).viewInsets.vertical + 10),
+        child: SafeArea(
+          child: Padding(
+        padding: EdgeInsets.only(
+            right: MediaQuery.of(context).viewInsets.right +15,
+            left: MediaQuery.of(context).viewInsets.left +15,
+            top: MediaQuery.of(context).viewInsets.right +30),
     child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -72,168 +78,156 @@ class PodcastPlay extends StatelessWidget {
     icon: Icon(Icons.favorite_border, size: 30, color: Colors.black,),),
     ],
     ),
+      SizedBox(height: MediaQuery.of(context).viewInsets.top + 20,),
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                Padding(
-                padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top + 10),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(3, 180, 97, 1),
-                        borderRadius: BorderRadius.circular(16.2),
-                      ),
-                      height: 200,
-                      width: 200,
-                      child: Stack(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  SvgPicture.asset("assets/vectors/circles.svg",color: color,),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  SvgPicture.asset("assets/vectors/mic.svg",color: color),
-                                ],
-                              ),
-                            ],
-                          ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(3, 180, 97, 1),
+                          borderRadius: BorderRadius.circular(16.2),
+                        ),
+                        height: 200,
+                        width: 200,
+                        child: Stack(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    SvgPicture.asset("assets/vectors/circles.svg",color: color,),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    SvgPicture.asset("assets/vectors/mic.svg",color: color),
+                                  ],
+                                ),
+                              ],
+                            ),
 
-                        ],
-                      ),
+                          ],
+                        ),
 
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          ],
-      ),
-      SizedBox(
-          height: 10,
-      ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+      SizedBox(height: MediaQuery.of(context).viewInsets.top + 20),
 
       Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Container(
-                child: Center(
-                  child: Text(title, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Container(
+              child: Center(
+                child: Text(title, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),),
               ),
             ),
-          ],
-      ),
-
-      SizedBox(
-          height: 10,
-      ),
-      Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(author, style: TextStyle(
-              fontSize: 18,
-            ),),
-          ],
-      ),
-      SizedBox(
-          height: 20,
-      ),
-
-      Container(
-          child: InkWell(child: SvgPicture.asset("assets/vectors/slider.svg"),
-            onTap: (){},
           ),
+        ],
       ),
 
-
-
-      SizedBox(
-          height: 20,
+      SizedBox(height: MediaQuery.of(context).viewInsets.top + 20),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(author, style: TextStyle(
+            fontSize: 18,
+          ),),
+        ],
       ),
+      SizedBox(height: MediaQuery.of(context).viewInsets.top + 30),
+
+      Slider(
+        min: 100,
+        max: 220,
+        value: sliderValue,
+        activeColor: colors,
+        inactiveColor: color,
+        onChanged: (double value){
+
+        }),
+
+      // Container(
+      //     child: InkWell(child: SvgPicture.asset("assets/vectors/slider.svg"),
+      //       onTap: (){},
+      //     ),
+      // ),
+
+
+
+      SizedBox(height: MediaQuery.of(context).viewInsets.top + 30),
 
       Padding(
-          padding:  EdgeInsets.only(left: MediaQuery.of(context).viewInsets.left  + 20, right: MediaQuery.of(context).viewInsets.right + 20),
+        padding:  EdgeInsets.only(left: MediaQuery.of(context).viewInsets.left  + 20, right: MediaQuery.of(context).viewInsets.right + 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset("assets/vectors/shuffle.svg"),
+            SvgPicture.asset("assets/vectors/speaker.svg"),
+          ],
+        ),
+      ),
+
+      SizedBox(height: MediaQuery.of(context).viewInsets.top + 30),
+
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).viewInsets.horizontal + 25),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(Icons.fast_rewind, size: 50, color: Colors.black,),
+            Icon(Icons.pause, size: 50, color: Colors.black,),
+
+            Icon(Icons.fast_forward, size: 50, color: Colors.black,),
+          ],
+        ),
+      ),
+
+      SizedBox(height: MediaQuery.of(context).viewInsets.top + 40),
+
+      Container(
+        height: 94,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Color.fromRGBO(3, 180, 97, 0.08),
+        ),
+        child: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).viewInsets.horizontal + 60, vertical: MediaQuery.of(context).viewInsets.vertical + 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset("assets/vectors/shuffle.svg"),
-              SvgPicture.asset("assets/vectors/speaker.svg"),
+              Column(
+                children: [
+                  Icon(LineIcons.download, size: 30, color: Colors.black,),
+                  Text("Download"),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(LineIcons.share, size: 30, color: Colors.black,),
+                  Text("Share"),
+                ],
+              ),
             ],
           ),
-      ),
-
-      SizedBox(
-          height: 20,
-      ),
-
-      Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).viewInsets.horizontal + 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(Icons.fast_rewind, size: 40, color: Colors.black,),
-             IconButton(
-                 onPressed: () {
-
-                 },
-                 icon: Icon(Icons.pause, color: Colors.black, size: 30,),),
-              Icon(Icons.fast_forward, size: 40, color: Colors.black,),
-            ],
-          ),
-      ),
-
-      SizedBox(
-          height: 15,
-      ),
-
-      Container(
-          height: 94,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Color.fromRGBO(3, 180, 97, 0.08),
-          ),
-          child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).viewInsets.horizontal + 60, vertical: MediaQuery.of(context).viewInsets.vertical + 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Icon(LineIcons.download, size: 30, color: Colors.black,),
-                    Text("Download"),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Icon(LineIcons.share, size: 30, color: Colors.black,),
-                    Text("Share"),
-                  ],
-                ),
-              ],
-            ),
-          ),
+        ),
 
       ),
 
@@ -245,7 +239,6 @@ class PodcastPlay extends StatelessWidget {
     ),
       ),
     ),
-        ),
       ),
     );
   }
